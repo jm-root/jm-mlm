@@ -2,12 +2,13 @@ var chai = require('chai');
 var expect = chai.expect;
 var config = require('../config');
 var $ = require('../lib');
+var ObjectId = require('bson').ObjectId;
 
 let service = $(config);
 let router = service.router();
 
 let team = {
-    code: '1',
+    code: 'test',
     title: '创富一组',
 };
 
@@ -34,20 +35,62 @@ let prepare = function () {
                     return service.team.addUser(team.id, user.id);
                 });
         })
+        .catch(function (err) {
+            console.error(err.stack);
+        })
+        ;
+};
+
+
+let prepare2 = function () {
+    return init()
+        .then(function () {
+            return service.team.create(team);
+        })
+        .then(function (team) {
+            return service.user.findOne()
+                .then(function (user) {
+                    for(var i=0;i<14;i++){
+                        service.team.addUser(team.id, new ObjectId())
+                            .then(function (doc) {
+                                console.log(doc);
+                            })
+                        ;
+                    }
+                    return service.team.addUser(team.id, user.id);
+                });
+        })
+        .catch(function (err) {
+            console.error(err.stack);
+        })
         ;
 };
 
 describe('service', function () {
     it('find team by userId', function (done) {
-        prepare()
+        prepare2()
             .then(function () {
-                return service.team.findOne();
+                return service.team.findOne({code:team.code});
             })
             .then(function (doc) {
                 service.team.findByUserId(doc.users[0].user).then(function (doc) {
                     expect(doc).to.be.ok;
                     done();
                 });
+            })
+            .catch(function (err) {
+                console.error(err.stack);
+            })
+        ;
+    });
+
+    it('team full', function (done) {
+        prepare2()
+            .then(function () {
+                done();
+            })
+            .catch(function (err) {
+                console.error(err.stack);
             })
         ;
     });
@@ -68,7 +111,11 @@ describe('service', function () {
                     expect(doc).to.be.ok;
                     done();
                 });
-            });
+            })
+                .catch(function (err) {
+                    console.error(err.stack);
+                })
+            ;
         });
     });
 });

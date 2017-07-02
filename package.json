@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node node_modules/jm-server/bin/jm-server",
     "cluster": "node node_modules/jm-server/bin/jm-server --cluster",
-    "test": "node test"
+    "test": "node ./node_modules/mocha/bin/_mocha test"
   },
   "repository": {
     "type": "git",
