@@ -1,0 +1,37 @@
+{
+  "name": "jm-mlm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index",
+  "scripts": {
+    "start": "node node_modules/jm-server/bin/jm-server",
+    "cluster": "node node_modules/jm-server/bin/jm-server --cluster",
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jm-root/jm-mlm.git"
+  },
+  "keywords": [
+    "javascript",
+    "jm-mlm",
+    "mlm"
+  ],
+  "author": "Jeff YU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jm-root/jm-mlm/issues"
+  },
+  "homepage": "https://github.com/jm-root/jm-mlm",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "jm-ms-daorouter": "^1.0.0",
+    "jm-server": "^1.0.0",
+    "jm-user": "^1.0.6"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
