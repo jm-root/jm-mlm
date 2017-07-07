@@ -15,9 +15,6 @@ var config = {
         modules: {
             mlm: {
                 module: process.cwd() + '/lib'
-            },
-            user: {
-                module: 'jm-user'
             }
         }
     }
