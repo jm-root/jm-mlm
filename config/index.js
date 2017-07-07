@@ -12,7 +12,6 @@ var config = {
     production: {
         debug: false,
         port: 3000,
-        tableNamePrefix: 'mlm_',
         modules: {
             mlm: {
                 module: process.cwd() + '/lib'
