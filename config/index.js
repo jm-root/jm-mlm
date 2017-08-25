@@ -3,6 +3,7 @@ var config = {
   development: {
     debug: true,
     port: 3000,
+    lng: 'zh_CN',
     modules: {
       mlm: {
         module: process.cwd() + '/lib'
